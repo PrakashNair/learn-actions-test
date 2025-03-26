@@ -1,0 +1,21 @@
+name: Deploy my Test Actions
+
+# trigger on all push events to main branch
+on:
+  workflow_dispatch:
+
+
+jobs:
+  metadata:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo everything
+        run: |
+          echo ${{ github.sha }}
+          echo ${{ github.repository }}    
+          printenv
+
+  test-custom-action:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: PrakashNair/learn-actions@v1
