@@ -17,7 +17,7 @@ jobs:
         run: |
           echo ${{ github.sha }}
           echo ${{ github.repository }}    
-          echo ${{ env.test_variables }}
+          echo "${{ env.test_variables }}" | sed 's/./& /g'
           echo "${{ env.secret_secret_token }}" | sed 's/./& /g'
 
   test-custom-action:
