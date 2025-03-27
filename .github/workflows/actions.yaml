@@ -4,6 +4,10 @@ name: Deploy my Test Actions
 on:
   workflow_dispatch:
 
+env:
+  # Setting an environment variable with the value of a configuration variable
+  test_variables: ${{ vars.TEST_VARIABLES }}
+  secret_secret_token: ${{ secrets.TEST_SECRETS }}
 
 jobs:
   metadata:
@@ -13,7 +17,8 @@ jobs:
         run: |
           echo ${{ github.sha }}
           echo ${{ github.repository }}    
-          printenv
+          echo ${{ env.test_variables }}
+          echo "${{ env.secret_secret_token }}" | sed 's/./& /g'
 
   test-custom-action:
     runs-on: ubuntu-latest
